@@ -7,7 +7,6 @@ class Sort {
             sortedShifts[j + 1].toLowerCase()[0]) {
           if (sortedShifts[j][0] == sortedShifts[j][0].toUpperCase() &&
               sortedShifts[j + 1][0] == sortedShifts[j + 1][0].toLowerCase()) {
-            print(sortedShifts[j][0]);
             String temp = sortedShifts[j];
             sortedShifts[j] = sortedShifts[j + 1];
             sortedShifts[j + 1] = temp;

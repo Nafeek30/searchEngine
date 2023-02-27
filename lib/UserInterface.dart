@@ -167,7 +167,8 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
     List<String> lines = inputController.text.split('\n');
 
     lines.forEach((element) {
-      List<String> words = element.split(' ').toList();
+      List<String> words = element.trim().split(' ').toList();
+
       for (var i = 0; i < words.length; i++) {
         setState(() {
           allShifts.add(CircularShift().circularShift(words, i));
