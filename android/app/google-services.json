@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "186468891275",
+    "project_id": "searchengine-c740c",
+    "storage_bucket": "searchengine-c740c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186468891275:android:ee2bed0953d8e338a7f28e",
+        "android_client_info": {
+          "package_name": "com.example.kwic_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186468891275-cv9r103nk4g6t6dmgfsubdf6kb82la5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdPHB32Ri2DRjCjOrpE7WHrxK7RXHSxpQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186468891275-cv9r103nk4g6t6dmgfsubdf6kb82la5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
