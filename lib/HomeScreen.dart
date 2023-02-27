@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kwic_app/Alphabetize.dart';
+import 'package:kwic_app/CircularShift.dart';
+import 'package:kwic_app/Sort.dart';
 
-class HomeScreen extends StatefulWidget {
+class UserInterfaceScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return HomeScreenState();
+    return UserInterfaceState();
   }
 }
 
-class HomeScreenState extends State<HomeScreen> {
+class UserInterfaceState extends State<UserInterfaceScreen> {
   TextEditingController inputController = TextEditingController();
   List<String> allShifts = [];
   List<String> sortedShifts = [];
@@ -120,8 +123,8 @@ class HomeScreenState extends State<HomeScreen> {
                       allShifts.clear();
                       sortedShifts.clear();
                       generateCircularShift();
-                      alphabetize();
-                      sortLines();
+                      Alphabetize().alphabetize(sortedShifts);
+                      Sort().sortLines(sortedShifts);
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
@@ -159,47 +162,10 @@ class HomeScreenState extends State<HomeScreen> {
       List<String> words = element.split(' ').toList();
       for (var i = 0; i < words.length; i++) {
         setState(() {
-          allShifts.add(circularShift(words, i));
-          sortedShifts.add(circularShift(words, i));
+          allShifts.add(CircularShift().circularShift(words, i));
+          sortedShifts.add(CircularShift().circularShift(words, i));
         });
       }
     });
-  }
-
-  /// Circular shifts to the left
-  String circularShift(List<String> arr, int shift) {
-    int length = arr.length;
-    List<String> result =
-        List<String>.generate(length, (index) => arr[(index + shift) % length]);
-
-    String res = '';
-    result.forEach((element) {
-      res += '$element ';
-    });
-
-    return res;
-  }
-
-  /// This function sorts all the lines in alphabetical order
-  alphabetize() {
-    sortedShifts.sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
-  }
-
-  /// This function sorts all the lower and upper case letters according to the assignment requirements
-  sortLines() {
-    for (int i = 0; i < sortedShifts.length - 1; i++) {
-      for (int j = 0; j < sortedShifts.length - i - 1; j++) {
-        if (sortedShifts[j].toLowerCase()[0] ==
-            sortedShifts[j + 1].toLowerCase()[0]) {
-          if (sortedShifts[j][0] == sortedShifts[j][0].toUpperCase() &&
-              sortedShifts[j + 1][0] == sortedShifts[j + 1][0].toLowerCase()) {
-            print(sortedShifts[j][0]);
-            String temp = sortedShifts[j];
-            sortedShifts[j] = sortedShifts[j + 1];
-            sortedShifts[j + 1] = temp;
-          }
-        }
-      }
-    }
   }
 }
