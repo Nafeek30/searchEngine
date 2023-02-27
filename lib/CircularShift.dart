@@ -1,5 +1,5 @@
+/// This function circular shifts to the left by one word at a time
 class CircularShift {
-  /// Circular shifts to the left
   String circularShift(List<String> arr, int shift) {
     int length = arr.length;
     List<String> result =
