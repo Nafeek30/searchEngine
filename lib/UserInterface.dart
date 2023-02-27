@@ -21,7 +21,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        title: const Text('Home'),
+        title: const Text('User Interface'),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(
@@ -31,6 +31,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            /// ENTER TEXT SECTION
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
@@ -49,6 +50,8 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                 controller: inputController,
               ),
             ),
+
+            /// CIRCULAR SHIFT SECTION
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
@@ -81,6 +84,8 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                 ),
               ),
             ),
+
+            /// SORTED LIST SECTION
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
@@ -118,6 +123,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  /// COMPUTE BUTTON
                   ElevatedButton(
                     onPressed: () {
                       allShifts.clear();
@@ -132,6 +138,8 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                     ),
                     child: const Text('Compute'),
                   ),
+
+                  ///  RESET BUTTON
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
