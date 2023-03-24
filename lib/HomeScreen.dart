@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwic_app/Alphabetize.dart';
 import 'package:kwic_app/CircularShift.dart';
-import 'package:kwic_app/Sort.dart';
 
 class UserInterfaceScreen extends StatefulWidget {
   @override
@@ -15,6 +14,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
   TextEditingController inputController = TextEditingController();
   List<String> allShifts = [];
   List<String> sortedShifts = [];
+  Alphabetize alphabetize = Alphabetize();
 
   @override
   Widget build(BuildContext context) {
@@ -123,8 +123,8 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                       allShifts.clear();
                       sortedShifts.clear();
                       generateCircularShift();
-                      Alphabetize().alphabetize(sortedShifts);
-                      Sort().sortLines(sortedShifts);
+                      alphabetize.alphabetize(sortedShifts);
+                      alphabetize.sortLines(sortedShifts);
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
@@ -157,15 +157,24 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
 
   generateCircularShift() {
     List<String> lines = inputController.text.split('\n');
+    CircularShift circularShift = CircularShift();
 
     lines.forEach((element) {
       List<String> words = element.split(' ').toList();
+
       for (var i = 0; i < words.length; i++) {
         setState(() {
-          allShifts.add(CircularShift().circularShift(words, i));
-          sortedShifts.add(CircularShift().circularShift(words, i));
+          allShifts.add(circularShift.circularShift(words, i));
+          sortedShifts.add(circularShift.circularShift(words, i));
         });
       }
     });
+
+    setState(() {
+      circularShift.omitNoise(allShifts);
+      circularShift.omitNoise(sortedShifts);
+    });
   }
 }
+
+// how old is keith
