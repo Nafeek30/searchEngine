@@ -14,6 +14,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
   TextEditingController inputController = TextEditingController();
   List<String> allShifts = [];
   List<String> sortedShifts = [];
+  CircularShift circularShift = CircularShift();
   Alphabetize alphabetize = Alphabetize();
 
   @override
@@ -156,9 +157,12 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
   }
 
   generateCircularShift() {
+    /// split each line and put it in a list
     List<String> lines = inputController.text.split('\n');
-    CircularShift circularShift = CircularShift();
 
+    /// for each line, perform circular shifts of all possibilities,
+    /// and add to lists [allShifts] and [sortedShifts]. Then omit
+    /// noise words.
     lines.forEach((element) {
       List<String> words = element.split(' ').toList();
 
