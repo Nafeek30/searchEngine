@@ -17,7 +17,7 @@ class CircularShift {
     'off',
   ];
 
-  /// Circular shifts to the left
+  /// Circular shifts to the left by one word each time
   String circularShift(List<String> arr, int shift) {
     int length = arr.length;
     List<String> result =
@@ -31,7 +31,8 @@ class CircularShift {
     return res;
   }
 
-  omitNoise(List<String> list) {
+  /// Omits the sentences that start with a noise word
+  omitNoise(List list) {
     for (int i = 0; i < list.length; i++) {
       if (noiseWords.contains(list[i].split(' ').first)) {
         list.removeAt(i);
@@ -39,23 +40,3 @@ class CircularShift {
     }
   }
 }
-
-// class CircularShift {
-//
-//   void shiftLeft(List<String> words) {
-//     String firstWord = words.removeAt(0);
-//     words.add(firstWord);
-//     print('1');
-//     print(words);
-//   }
-//
-//   void sortWords(List<String> words) {
-//     words.sort();
-//     print('2');
-//     print(words);
-//   }
-//
-//   String getShiftedSentence(List<String> words) {
-//     return words.join(" ");
-//   }
-// }

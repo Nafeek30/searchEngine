@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwic_app/Alphabetize.dart';
 import 'package:kwic_app/CircularShift.dart';
+import 'package:kwic_app/Sort.dart';
 
 class UserInterfaceScreen extends StatefulWidget {
   @override
@@ -13,9 +14,12 @@ class UserInterfaceScreen extends StatefulWidget {
 class UserInterfaceState extends State<UserInterfaceScreen> {
   TextEditingController inputController = TextEditingController();
   List<String> allShifts = [];
-  List<String> sortedShifts = [];
+  List sortedShifts = [];
+
+  /// Initialize Instances
   CircularShift circularShift = CircularShift();
   Alphabetize alphabetize = Alphabetize();
+  Sort sort = Sort();
 
   @override
   Widget build(BuildContext context) {
@@ -121,11 +125,14 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      // First cleanup, then generate circular shifts, then sort the sentences by
+                      // alphabets (upper/lower case not considered), then finally sort the sentences by
+                      // upper/lowercase.
                       allShifts.clear();
                       sortedShifts.clear();
                       generateCircularShift();
-                      alphabetize.alphabetize(sortedShifts);
                       alphabetize.sortLines(sortedShifts);
+                      sort.sortLines(sortedShifts);
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
@@ -136,6 +143,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
+                        // Clear all lists
                         inputController.clear();
                         allShifts.clear();
                         sortedShifts.clear();
@@ -180,5 +188,3 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
     });
   }
 }
-
-// how old is keith
