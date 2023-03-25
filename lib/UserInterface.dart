@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwic_app/Alphabetize.dart';
 import 'package:kwic_app/CircularShift.dart';
