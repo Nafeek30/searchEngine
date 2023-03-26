@@ -89,7 +89,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Sorted Circular shift (Process time: $time)',
+                'Sorted Circular shift (Process time: $time ms)',
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
