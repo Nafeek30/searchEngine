@@ -12,6 +12,7 @@ class HomeScreenState extends State<HomeScreen> {
   TextEditingController inputController = TextEditingController();
   List<String> allShifts = [];
   List<String> sortedShifts = [];
+  int time = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,7 @@ class HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Sorted Circular shift possibilities: ',
+                'Sorted Circular shift (Process time: $time ms) ',
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -117,11 +118,16 @@ class HomeScreenState extends State<HomeScreen> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      Stopwatch stopwatch = new Stopwatch()..start();
                       allShifts.clear();
                       sortedShifts.clear();
                       generateCircularShift();
                       alphabetize();
                       sortLines();
+                      stopwatch.stop();
+                      setState(() {
+                        time = stopwatch.elapsed.inMilliseconds;
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
@@ -135,6 +141,7 @@ class HomeScreenState extends State<HomeScreen> {
                         inputController.clear();
                         allShifts.clear();
                         sortedShifts.clear();
+                        time = 0;
                       });
                     },
                     style: ElevatedButton.styleFrom(
