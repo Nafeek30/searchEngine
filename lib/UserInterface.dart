@@ -14,6 +14,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
   TextEditingController inputController = TextEditingController();
   List<String> allShifts = [];
   List sortedShifts = [];
+  int time = 0;
 
   /// Initialize Instances
   CircularShift circularShift = CircularShift();
@@ -88,7 +89,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Sorted Circular shift possibilities: ',
+                'Sorted Circular shift (Process time: $time)',
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
@@ -127,11 +128,16 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                       // First cleanup, then generate circular shifts, then sort the sentences by
                       // alphabets (upper/lower case not considered), then finally sort the sentences by
                       // upper/lowercase.
+                      Stopwatch stopwatch = Stopwatch()..start();
                       allShifts.clear();
                       sortedShifts.clear();
                       generateCircularShift();
                       alphabetize.sortLines(sortedShifts);
                       sort.sortLines(sortedShifts);
+                      stopwatch.stop();
+                      setState(() {
+                        time = stopwatch.elapsed.inMilliseconds;
+                      });
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
@@ -146,6 +152,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                         inputController.clear();
                         allShifts.clear();
                         sortedShifts.clear();
+                        time = 0;
                       });
                     },
                     style: ElevatedButton.styleFrom(
