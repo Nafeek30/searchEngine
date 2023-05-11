@@ -4,7 +4,7 @@ class AscendingAlphabetize extends AlphabetizeBridge {
   /// This function sorts all the lines in alphabetical order
 
   @override
-  sortLines(List sortedShifts) {
+  alphabetizeLines(List sortedShifts) {
     sortedShifts.sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
   }
 }

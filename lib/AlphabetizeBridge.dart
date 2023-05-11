@@ -1,5 +1,5 @@
 class AlphabetizeBridge {
-  sortLines(List sortedShifts) {
+  alphabetizeLines(List sortedShifts) {
     throw UnimplementedError('sortLines() method must be implemented');
   }
 }
