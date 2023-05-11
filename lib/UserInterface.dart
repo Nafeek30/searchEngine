@@ -140,7 +140,7 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                       allShifts.clear();
                       sortedShifts.clear();
                       generateCircularShift();
-                      sort.alphabetize.alphabetizeLines(sortedShifts);
+                      sort.alphabetizeLines(sortedShifts);
                       sort.sort(sortedShifts);
                       stopwatch.stop();
                       setState(() {
