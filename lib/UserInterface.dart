@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kwic_app/Alphabetize.dart';
+import 'package:kwic_app/AscendingAlphabetize.dart';
 import 'package:kwic_app/CircularShift.dart';
-import 'package:kwic_app/Sort.dart';
+import 'package:kwic_app/CircularShiftFacade.dart';
+import 'package:kwic_app/CustomSort.dart';
+import 'package:kwic_app/SortContext.dart';
 
 class UserInterfaceScreen extends StatefulWidget {
   @override
@@ -18,8 +20,14 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
 
   /// Initialize Instances
   CircularShift circularShift = CircularShift();
-  Alphabetize alphabetize = Alphabetize();
-  Sort sort = Sort();
+  SortContext sort = SortContext(CustomSort());
+  late CircularShiftFacade circularShiftFacade;
+
+  @override
+  void initState() {
+    super.initState();
+    circularShiftFacade = CircularShiftFacade(circularShift);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,8 +140,8 @@ class UserInterfaceState extends State<UserInterfaceScreen> {
                       allShifts.clear();
                       sortedShifts.clear();
                       generateCircularShift();
-                      alphabetize.sortLines(sortedShifts);
-                      sort.sortLines(sortedShifts);
+                      sort.alphabetize.sortLines(sortedShifts);
+                      sort.sort(sortedShifts);
                       stopwatch.stop();
                       setState(() {
                         time = stopwatch.elapsed.inMilliseconds;

@@ -1,6 +1,6 @@
-import 'package:kwic_app/ISort.dart';
+import 'package:kwic_app/SortStrategy.dart';
 
-class Sort implements ISort {
+class CustomSort extends SortStrategy {
   List allNumberSentences =
       []; // contains a list of a list of numbers converted from char
   List<String> sentences =
